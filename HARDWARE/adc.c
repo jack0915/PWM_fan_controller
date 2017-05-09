@@ -1,7 +1,7 @@
 #include "adc.h"
 #include "delay.h"
 
-
+const u16 temperature_table[100]={5145,5095,5043,4989,4933,4877,4819,4759,4699,4637,4574,4509,4444,4378,4310,4242,4173,4104,4034,3963,3891,3820,3748,3676,3603,3531,3458,3386,3314,3242,3171,3100,3029,2959,2890,2821,2753,2686,2619,2554,2489,2426,2363,2302,2241,2182,2123,2066,2010,1955,1902,1849,1798,1748,1698,1651,1604,1558,1514,1471,1429,1388,1348,1309,1217,1234,1198,1164,1130,1097,1065,1034,1004,975,947,919,893,867,842,817,794,771,749,771,749,727,706,686,667,648,629,611,594,577,561,545,530,515,501,487,474,461,448,436,424,412,401,390,380,370,360,350,341};
 
 void Adc_Init(void)
 {
@@ -11,9 +11,9 @@ void Adc_Init(void)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA |RCC_APB2Periph_ADC1	, ENABLE );	  //使能ADC1通道时钟
 	
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;				 //set PWM output at PA1
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; 		 //模拟输入
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
-  GPIO_Init(GPIOA, &GPIO_InitStructure);					 //set PWM output at PA1
+        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN; 		 //模拟输入
+        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
+        GPIO_Init(GPIOA, &GPIO_InitStructure);					 //set PWM output at PA1
 
 	RCC_ADCCLKConfig(RCC_PCLK2_Div6);
 	
