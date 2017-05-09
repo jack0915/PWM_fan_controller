@@ -1,7 +1,9 @@
 #include "adc.h"
 #include "delay.h"
+#define temp_A  10
 
-const u16 temperature_table[100]={5145,5095,5043,4989,4933,4877,4819,4759,4699,4637,4574,4509,4444,4378,4310,4242,4173,4104,4034,3963,3891,3820,3748,3676,3603,3531,3458,3386,3314,3242,3171,3100,3029,2959,2890,2821,2753,2686,2619,2554,2489,2426,2363,2302,2241,2182,2123,2066,2010,1955,1902,1849,1798,1748,1698,1651,1604,1558,1514,1471,1429,1388,1348,1309,1217,1234,1198,1164,1130,1097,1065,1034,1004,975,947,919,893,867,842,817,794,771,749,771,749,727,706,686,667,648,629,611,594,577,561,545,530,515,501,487,474,461,448,436,424,412,401,390,380,370,360,350,341};
+
+const u16 temperature_table[89]={3891,3820,3748,3676,3603,3531,3458,3386,3314,3242,3171,3100,3029,2959,2890,2821,2753,2686,2619,2554,2489,2426,2363,2302,2241,2182,2123,2066,2010,1955,1902,1849,1798,1748,1698,1651,1604,1558,1514,1471,1429,1388,1348,1309,1217,1234,1198,1164,1130,1097,1065,1034,1004,975,947,919,893,867,842,817,794,771,749,771,749,727,706,686,667,648,629,611,594,577,561,545,530,515,501,487,474,461,448,436,424,412,401,390,380,370,360,350,341};
 
 void Adc_Init(void)
 {
@@ -64,19 +66,39 @@ u16 Get_Adc_Average(u8 ch,u8 times)
 	for(t=0;t<times;t++)
 	{
 		temp_val+=Get_Adc(ch);
-		delay_ms(5);
+		delay_ms(5); 
 	}
 	return temp_val/times;
 	
 }
 
-void Get_RTC_Temperature(void)
+uint8 Fine_data_position(u16 *a,u8 ArrayLong,u16 data)//binary searching,表中数据从大到小,入口参数：表地址、表长度、要查找的数据
+{  
+    u16 begin,end,middle ;  
+    u8 i ;  
+    begin = 0 ;  
+    end = ArrayLong-1 ;  
+    i = 0  ;  
+    if(data >= a[begin]) return begin ;  
+    else if(data <= a[end]) return end ;  
+    while(begin < end)  
+    {  
+        middle = (begin+end)/2 ;  
+        if(data == a[middle] ) break ;  
+        if(data < a[middle] && data > a[middle+1]) break ;   
+        if(data > a[middle])  end = middle ;                      
+        else begin = middle ;      
+        if(i++ > ArrayLong) break ;  
+    }  
+    if(begin > end ) return 0 ;   
+    return middle ;  
+}  
+
+u8 Get_RTC_Temperature(uc temp_A, u16 ArrayPosition)   //according to data position in the array to get the real temperature
 {
-	
-	
-	
-	
-	
+	u8 temperature=0;
+	temperature=temp_A+ArrayPosition;  
+	return temperature;
 	
 }
 
