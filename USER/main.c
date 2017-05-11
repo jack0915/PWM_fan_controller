@@ -24,10 +24,11 @@
   
 	const int temp_A=10;
 	u8 temp_position=0;
-	const int TempSize=89;	
+	const int TempSize=93;
+   
   //temp_position = temperature_table;	 
 	const static u16 temperature_table[TempSize]={3891,3820,3748,3676,3603,3531,3458,3386,3314,3242,3171,3100,3029,2959,2890,2821,2753,2686,2619,2554,2489,2426,2363,2302,2241,2182,2123,2066,2010,1955,1902,1849,1798,1748,1698,1651,1604,1558,1514,1471,1429,1388,1348,1309,1217,1234,1198,1164,1130,1097,1065,1034,1004,975,947,919,893,867,842,817,794,771,749,771,749,727,706,686,667,648,629,611,594,577,561,545,530,515,501,487,474,461,448,436,424,412,401,390,380,370,360,350,341};
-	//u16 *temp_position ;
+	//TempSize=sizeof(temperature_table)/sizeof(temperature_table[0])	
 	//temp_position = temperature_table; 
   
 	short temperature;  
@@ -85,7 +86,7 @@
 		  LCD_ShowxNum(172,200,temp,3,16,0X80);			
 			temperature=DS18B20_Get_Temp();	
 			
-			temp_position=Fine_data_position(temperature_table[TempSize],TempSize,temp);
+			temp_position=Fine_data_position(temperature_table[TempSize-1],TempSize,temp);
 			NTC_temperature=Get_RTC_Temperature(temp_A,temp_position);
 			
 			
