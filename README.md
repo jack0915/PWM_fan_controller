@@ -1,5 +1,5 @@
 # PWM_fan_controller
-[![GitHub version](![GitHub version](https://img.shields.io/badge/GitHub%20version-v0.6-green.svg)(https://github.com/jack0915/PWM_fan_controller))
+(![GitHub version](https://img.shields.io/badge/software%20-v0.6-green.svg)(https://github.com/jack0915/PWM_fan_controller))
 
 [![GitHub version](https://img.shields.io/badge/QFCs%20version-v1.0-brightgreen.svg)](https://github.com/KitSprout/QCopterFlightControl)
 ****
