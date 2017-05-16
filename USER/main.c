@@ -21,26 +21,25 @@
 
  int main(void)
  {
-  
-	const int temp_A=10;
-	u8 temp_position=0;
-	const int TempSize=93;
-   
-  //temp_position = temperature_table;	 
-	const static u16 temperature_table[TempSize]={3891,3820,3748,3676,3603,3531,3458,3386,3314,3242,3171,3100,3029,2959,2890,2821,2753,2686,2619,2554,2489,2426,2363,2302,2241,2182,2123,2066,2010,1955,1902,1849,1798,1748,1698,1651,1604,1558,1514,1471,1429,1388,1348,1309,1217,1234,1198,1164,1130,1097,1065,1034,1004,975,947,919,893,867,842,817,794,771,749,771,749,727,706,686,667,648,629,611,594,577,561,545,530,515,501,487,474,461,448,436,424,412,401,390,380,370,360,350,341};
-	//TempSize=sizeof(temperature_table)/sizeof(temperature_table[0])	
-	//temp_position = temperature_table; 
-  
-	short temperature;  
-  
-  u8 NTC_temperature=0;
-  		
+  short temperature;  
+  u8 NTC_temperature=0;		
 	u32 current_t=0;
 	u32 previous_t=0;
 	uc8 interval=1;
  	u8 t=0;	
 	u16 adcx;
 	float temp;
+	const int temp_A=10;
+	u8 temp_position=0;
+	const int TempSize=93;
+  
+  //temp_position = temperature_table;	 
+	const u16 temperature_table[TempSize]={3891,3820,3748,3676,3603,3531,3458,3386,3314,3242,3171,3100,3029,2959,2890,2821,2753,2686,2619,2554,2489,2426,2363,2302,2241,2182,2123,2066,2010,1955,1902,1849,1798,1748,1698,1651,1604,1558,1514,1471,1429,1388,1348,1309,1217,1234,1198,1164,1130,1097,1065,1034,1004,975,947,919,893,867,842,817,794,771,749,771,749,727,706,686,667,648,629,611,594,577,561,545,530,515,501,487,474,461,448,436,424,412,401,390,380,370,360,350,341};
+	
+	u16 *pTmp ;     
+  pTmp=(uint16_t *)temperature_table ;
+  
+	
 	delay_init();	    	 //延时函数初始化	  
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
 	uart_init(115200);	 	//串口初始化为115200
@@ -62,6 +61,7 @@
 	LCD_ShowString(60,180,200,16,16,"ADC_CH0_VAL:");	      
 	LCD_ShowString(60,200,200,16,16,"ADC_CH0_VOL:0.000V");	
 	LCD_ShowString(60,240,200,16,16,"Temp:   . C");
+	LCD_ShowString(60,260,200,16,16,"NTC Temp:     C");
 	while(DS18B20_Init())	//DS18B20初始化	
 	{
 		LCD_ShowString(30,220,200,16,16,"DS18B20 Error");
@@ -86,7 +86,8 @@
 		  LCD_ShowxNum(172,200,temp,3,16,0X80);			
 			temperature=DS18B20_Get_Temp();	
 			
-			temp_position=Fine_data_position(temperature_table[TempSize-1],TempSize,temp);
+			temp=Get_Adc_Average(ADC_Channel_1,10);
+			temp_position=Fine_data_position(pTmp,TempSize,temp);
 			NTC_temperature=Get_RTC_Temperature(temp_A,temp_position);
 			
 			
@@ -97,7 +98,7 @@
 			}else LCD_ShowChar(30+40,240,' ',16,0);			//去掉负号
 			LCD_ShowNum(30+40+8+30,240,temperature/10,2,16);	//显示正数部分	    
    		LCD_ShowNum(30+40+32+30,240,temperature%10,1,16);	//显示小数部分
-			LCD_ShowNum(30+40+32+30,260,NTC_temperature,1,16);
+			LCD_ShowNum(30+40+32+30,260,NTC_temperature,2,16);
 			
       previous_t=current_t;
 		}				   

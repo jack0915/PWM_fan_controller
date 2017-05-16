@@ -2,7 +2,7 @@
 #include "delay.h"
 
 
-//const int temp_A =10;
+const int temp_A =10;
 //const int16_t temperature_table[89]={3891,3820,3748,3676,3603,3531,3458,3386,3314,3242,3171,3100,3029,2959,2890,2821,2753,2686,2619,2554,2489,2426,2363,2302,2241,2182,2123,2066,2010,1955,1902,1849,1798,1748,1698,1651,1604,1558,1514,1471,1429,1388,1348,1309,1217,1234,1198,1164,1130,1097,1065,1034,1004,975,947,919,893,867,842,817,794,771,749,771,749,727,706,686,667,648,629,611,594,577,561,545,530,515,501,487,474,461,448,436,424,412,401,390,380,370,360,350,341};
 
 
@@ -78,7 +78,7 @@ u16 Get_Adc_Average(u8 ch,u8 times)
 	
 }
 
-u8 Fine_data_position(u16 a[],u8 ArrayLong,u16 data)//binary searching,
+u8 Fine_data_position(u16 *a,u8 ArrayLong,u16 data)//binary searching,
 {  
     u16 begin,end,middle ;  
     u8 i ;  
@@ -100,7 +100,7 @@ u8 Fine_data_position(u16 a[],u8 ArrayLong,u16 data)//binary searching,
     return middle ;  
 }  
 
-u16 Get_RTC_Temperature(const int temp_A, u16 ArrayPosition) 
+u16 Get_RTC_Temperature(const int temp_A, u8 ArrayPosition) 
 {
 	u8 temperature=0;
 	temperature=temp_A+ArrayPosition;  
