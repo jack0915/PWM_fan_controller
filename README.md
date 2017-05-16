@@ -1,7 +1,8 @@
 # PWM_fan_controller
 [![software version](https://img.shields.io/badge/software%20-v0.6-green.svg)](https://github.com/jack0915/PWM_fan_controller)
 [![hardware version](https://img.shields.io/badge/hardware-v0.0-yellow.svg)](https://github.com/jack0915/PWM_fan_controller)
-[![Author](https://img.shields.io/badge/POWER%20BY-Jack%20Liang-blue.svg](https://github.com/jack0915/PWM_fan_controller)
+[![Author](https://img.shields.io/badge/POWER%20BY-Jack%20Liang-blue.svg](https://github.com/jack0915/PWM_fan_controller)  
+
 ****
 ## Project description
 A smart fan controller use a STM32 MCU to cooling a LED light . The controller have 3 main function.   
