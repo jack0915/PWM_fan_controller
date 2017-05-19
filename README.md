@@ -19,3 +19,11 @@ In this application, the temperature does not need a high accuracy.
 Further job would update the lookup table and expand the array. The interpolation algorithm can also increase the accuracy.
 ****
 
+
+
+
+http://www.go-gddq.com/html/s696/2011-10/806021.htm
+http://www.diangon.com/wenku/rd/yuanqijian/201501/00018476.html
+http://pcbheaven.com/circuitpages/High_Frequency_PWM_Fan_Controller/
+http://www.achingao.net/4/4-pin-pwm-fan-wiring-diagram
+http://app.qudong.com/print.php?contentid=70220
