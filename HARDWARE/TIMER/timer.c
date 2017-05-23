@@ -2,16 +2,7 @@
 #include "led.h"
 #include "usart.h"
 //////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK战舰STM32开发板
-//定时器 驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//修改日期:2012/9/4
-//版本：V1.1
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2009-2019
-//All rights reserved									  
+
 //********************************************************************************
 //V1.1 20120904
 //1,增加TIM3_PWM_Init函数。
@@ -100,4 +91,27 @@ void TIM3_PWM_Init(u16 arr,u16 psc)
 	TIM_Cmd(TIM3, ENABLE);  //使能TIM3
 	
 
+}
+
+u16 PWM_fan_speed(u16 NTC_temp) // use the NTC tempareture to determind the fan speed
+{
+	u16 fan_speed;
+	
+	if(NTC_temp<=20) // lower than 20 degree set pwm @20%
+	{
+		fan_speed=20;
+	}
+	else if(NTC_temp<=50)  //lower than 20 degree set pwm @20%
+	{
+		fan_speed=NTC_temp+2;
+	}
+	 else if(NTC_temp<=70)  //lower than 20 degree set pwm @20%
+	 {
+		 fan_speed=NTC_temp+3;
+	 }
+	  else                //higher than 70, power cut off
+		{
+			//power off
+		}
+	return fan_speed;
 }
