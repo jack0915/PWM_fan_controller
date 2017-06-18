@@ -19,3 +19,6 @@ In this application, the temperature does not need a high accuracy.
 Further job would update the lookup table and expand the array. The interpolation algorithm can also increase the accuracy.
 ****
 
+****
+reference
+http://www.petervis.com/electronics%20guides/cpu%20fan%20tacho/cpu%20fan%20tacho.html   
