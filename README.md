@@ -20,5 +20,6 @@ Further job would update the lookup table and expand the array. The interpolatio
 ****
 
 ****
-reference
+reference  
 http://www.petervis.com/electronics%20guides/cpu%20fan%20tacho/cpu%20fan%20tacho.html   
+http://www.analog.com/en/analog-dialogue/articles/how-to-control-fan-speed.html   
